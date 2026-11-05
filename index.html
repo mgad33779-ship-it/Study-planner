@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>مخطط المذاكرة</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--tx:#1d2330;--mu:#667085;--ac:#0f766e;--acb:#fff;--ln:#e4e2db;--wa:#b45309;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171c;--card:#1d222a;--tx:#eceff4;--mu:#9aa3b2;--ac:#2dd4bf;--acb:#0b1f1c;--ln:#2e3540;--wa:#fbbf24;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14171c;--card:#1d222a;--tx:#eceff4;--mu:#9aa3b2;--ac:#2dd4bf;--acb:#0b1f1c;--ln:#2e3540;--wa:#fbbf24;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0}h2{font-size:17px;margin:0 0 10px}
+.sub{color:var(--mu);font-size:14px;margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:14px;margin-bottom:14px}
+.task{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--ln)}
+.task:first-of-type{border-top:0}
+.task input{width:22px;height:22px;margin-top:3px;accent-color:var(--ac);flex:none}
+.task.done{opacity:.5;text-decoration:line-through}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;background:var(--ac);color:var(--acb);margin-inline-end:6px}
+.tag.rv{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.tag.fn{background:var(--wa);color:#fff}
+.mu{color:var(--mu);font-size:13px}.wa{color:var(--wa);font-size:13px}
+.bar{height:8px;background:var(--ln);border-radius:9px;overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;background:var(--ac)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+form label{font-size:13px;color:var(--mu);display:flex;flex-direction:column;gap:3px}
+form .full{grid-column:1/-1}
+input[type=text],input[type=number],input[type=date],select{font:inherit;padding:9px;border:1px solid var(--ln);border-radius:9px;background:var(--bg);color:var(--tx);min-width:0}
+button{font:inherit;padding:9px 14px;border-radius:9px;border:1px solid var(--ac);background:var(--ac);color:var(--acb);cursor:pointer}
+button.g{background:transparent;color:var(--ac)}
+button.d{background:transparent;color:var(--wa);border-color:var(--wa)}
+button.s{padding:4px 10px;font-size:13px}
+.tip{border-inline-start:4px solid var(--ac);padding:4px 12px;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<h1>مخطط المذاكرة</h1>
+<p class="sub" id="dt"></p>
+
+<div class="card"><h2>مهامك النهارده</h2><div id="tasks"></div><div class="row" style="margin-top:10px"><button class="g s" id="regen">حدّث الخطة</button></div></div>
+<div class="card tip" id="tip"></div>
+
+<div class="card"><h2>طريقة المذاكرة</h2>
+<details open style="margin-bottom:10px"><summary style="cursor:pointer;color:var(--ac);font-weight:600">أول مرة تذاكر المحاضرة (جديد)</summary>
+<ol style="padding-inline-start:20px;margin:8px 0 0">
+<li><b>جهّز نفسك:</b> الموبايل بعيد، مكان هادي، وحدد هدف الجلسة (مثلا: أخلص أول نص المحاضرة). اشتغل بجلسات 25 دقيقة تركيز كامل.</li>
+<li><b>نظرة سريعة 3 إلى 5 دقايق:</b> بص على العناوين والصور والملخص وأسئلة آخر المحاضرة، عشان مخك يعرف الصورة الكبيرة قبل التفاصيل.</li>
+<li><b>قسّم لأجزاء صغيرة:</b> خد جزء واحد (فكرة أو صفحتين) وافهمه كويس، متقراش المحاضرة كلها مرة واحدة.</li>
+<li><b>اقفل الكتاب واسترجع:</b> بعد كل جزء، اشرحه لنفسك بصوت عالي أو اكتب أهم النقط من ذاكرتك. دي أهم خطوة، وهي اللي بتثبّت المعلومة.</li>
+<li><b>رجّع للناقص:</b> افتح الكتاب وشوف إيه اللي نسيته أو غلطت فيه، وركز عليه بس.</li>
+<li><b>خد راحة 5 دقايق</b> بعد كل جلسة: قوم وامشي أو اشرب مية من غير موبايل. وبعد 4 جلسات خد راحة 20 إلى 30 دقيقة. العقل بيرتب المعلومات وانت بتستريح.</li>
+<li><b>حل أسئلة على المحاضرة:</b> حاول تحل قبل ما تبص على الحل، وحتى لو غلطت، الغلطة بتعلّمك. اكتب كل غلطة في ورقة "أخطائي".</li>
+<li><b>اختم:</b> من ذاكرتك اكتب ملخص صفحة واحدة أو خريطة ذهنية للمحاضرة. وبعدها نام كويس، لأن النوم بيثبّت اللي ذاكرته.</li>
+</ol></details>
+
+<details><summary style="cursor:pointer;color:var(--ac);font-weight:600">مراجعة محاضرة سبق ذاكرتها</summary>
+<ol style="padding-inline-start:20px;margin:8px 0 0">
+<li><b>ابدأ من غير ما تفتح المحاضرة:</b> خد ورقة فاضية واكتب كل اللي فاكره عنها لمدة 5 دقايق (عناوين، تعريفات، خطوات، أرقام).</li>
+<li><b>قارن:</b> افتح المحاضرة وقارن بالورقة. علّم بلون مختلف على اللي نسيته أو كتبته غلط.</li>
+<li><b>ركز على الضعيف:</b> اشرح الأجزاء اللي نسيتها بصوت عالي من غير كتاب لحد ما تطلع صح. متعيدش قراءة اللي انت حافظه.</li>
+<li><b>حل أسئلة:</b> ويفضل أسئلة جديدة أو مخلوطة من أكتر من محاضرة. ودوّن أي غلطة في ورقة "أخطائي".</li>
+<li><b>بدّل:</b> لو بتراجع أكتر من محاضرة، متراجعش كل واحدة لوحدها بالترتيب. اخلط الأفكار والأسئلة، ده بيقوي الربط بينها.</li>
+<li><b>الصعوبة حاجة كويسة:</b> لو حسيت إنك نسيت كتير، متقلقش. المجهود في التذكر هو اللي بيقوّي الحفظ، والخطة هتكرر المراجعة في موعدها.</li>
+<li><b>في المراجعة النهائية:</b> اشتغل على ورقة "أخطائي" وعلى حل الأسئلة أكتر من القراءة من الأول، وناكر أهم النقط من ذاكرتك. ومتسهرش قبل الامتحان، النوم أهم.</li>
+</ol></details></div>
+
+<div class="card"><h2>الخطة كاملة لحد الامتحان</h2><label class="row mu" style="margin-bottom:8px"><input type="checkbox" id="asm" checked> افترض إن باقي المحاضرات هتنزل بالتساوي قبل المراجعة النهائية</label><div id="full"></div></div>
+
+<div class="card"><h2>موادك</h2><div id="subs"></div></div>
+
+<div class="card"><h2 id="ft">ضيف مادة</h2>
+<form id="f">
+<label class="full">اسم المادة<input type="text" id="n" required placeholder="مثلا: Micro"></label>
+<label>معاد الامتحان<input type="date" id="e" required></label>
+<label>عدد المحاضرات كله<input type="number" id="t" min="1" required></label>
+<label>نزل منهم كام<input type="number" id="r" min="0" required></label>
+<label>ذاكرت كام<input type="number" id="s" min="0" required value="0"></label>
+<label>الصعوبة<select id="df"><option value="e">سهلة</option><option value="n" selected>عادية</option><option value="h">صعبة</option></select></label><label>أيام المراجعة النهائية<input type="number" id="fn" min="1" max="60" value="3" required></label>
+<div class="full"><button type="submit" id="sb">إضافة</button> <button type="button" class="g" id="cx" hidden>إلغاء التعديل</button> <span class="wa" id="err"></span></div>
+</form></div>
+<p class="mu">البيانات محفوظة على جهازك بس.</p>
+</main>
+<script>
+const KEY='studyplan.v1',IVS={e:[2,5,12,25],n:[1,3,7,14,30],h:[1,2,4,8,16,30]},CAPS={e:2,n:3,h:4},DFN={e:'سهلة',n:'عادية',h:'صعبة'};
+const ivOf=s=>IVS[s.df||'n'],capOf=s=>CAPS[s.df||'n'],finOf=s=>s.fin||3;
+let editId=null;
+let S=null;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+S=S||{subs:[],plan:null};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const today=()=>iso(new Date());
+const dd=(a,b)=>Math.round((new Date(b+'T00:00')-new Date(a+'T00:00'))/864e5);
+const addDays=(s,n)=>{const d=new Date(s+'T00:00');d.setDate(d.getDate()+n);return iso(d)};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $=id=>document.getElementById(id);
+const TIPS=[
+'ذاكر على جلسات 25 دقيقة تركيز وبعدها 5 دقايق راحة (بومودورو).',
+'بعد ما تخلص محاضرة، اقفل الكتاب واكتب أو قول اللي فاكره. الاسترجاع أقوى من إعادة القراءة.',
+'المراجعة الموزعة على أيام أحسن بكتير من المذاكرة كلها مرة واحدة.',
+'لو اتعلقت في مسألة، سيبها وامشي شوية. العقل بيكمل شغل في الخلفية.',
+'النوم الكويس بيثبّت اللي ذاكرته. متضحيش بيه.',
+'بدّل بين المواد وأنواع المسائل بدل ما تكرر نفس الحاجة.',
+'ابدأ بالمهمة الأصعب أو الأتقل وانت لسه نشيط.',
+'حل أسئلة بتقيس فهمك الحقيقي. إحساس "أنا فاهم" وانت بتقرا ممكن يخدعك.'];
+const dayIdx=()=>Math.floor(new Date(today()+'T00:00')/864e5);
+
+function gen(){
+  const t=today();
+  const keep=(S.plan&&S.plan.date===t)?S.plan.tasks.filter(k=>k.done):[];
+  const tasks=[];
+  const subs=S.subs.filter(s=>dd(t,s.exam)>=0).sort((a,b)=>a.exam.localeCompare(b.exam));
+  for(const s of subs){
+    const left=dd(t,s.exam);
+    const L=Object.keys(s.lec).map(Number).sort((a,b)=>a-b);
+    const remaining=s.total-L.length;
+    const FN=finOf(s),days=left>FN?left-FN:Math.max(1,left);
+    const pace=Math.ceil(remaining/Math.max(1,days));
+    const avail=[];for(let n=1;n<=s.released;n++)if(!s.lec[n])avail.push(n);
+    const doneNew=keep.filter(k=>k.sid===s.id&&k.type==='new').length;
+    const nw=doneNew?[]:avail.slice(0,Math.max(0,pace));
+    if(nw.length)tasks.push({sid:s.id,type:'new',lects:nw,done:false});
+    if(left<=FN){
+      if(L.length&&!keep.some(k=>k.sid===s.id&&k.type==='final'))tasks.push({sid:s.id,type:'final',lects:L,done:false});
+    }else{
+      const due=L.filter(n=>{const l=s.lec[n];return l.r<ivOf(s).length&&dd(l.last||l.d,t)>=ivOf(s)[l.r]})
+        .sort((a,b)=>(s.lec[a].last||s.lec[a].d).localeCompare(s.lec[b].last||s.lec[b].d)).slice(0,capOf(s)).sort((a,b)=>a-b);
+      if(due.length)tasks.push({sid:s.id,type:'review',lects:due,done:false});
+    }
+  }
+  S.plan={date:t,tasks:[...keep,...tasks]};
+  save();
+}
+
+function toggle(i){
+  const k=S.plan.tasks[i];if(k.done){undo(k);return}
+  const s=S.subs.find(x=>x.id===k.sid);const t=today();
+  if(s){
+    if(k.type==='new')k.lects.forEach(n=>{s.lec[n]={d:t,r:0}});
+    else if(k.type==='review'){k.prev={};k.lects.forEach(n=>{const l=s.lec[n];if(l){k.prev[n]={r:l.r,last:l.last};l.r++;l.last=t}})}
+  }
+  k.done=true;save();render();
+}
+function undo(k){const s=S.subs.find(x=>x.id===k.sid);if(s){if(k.type==='new')k.lects.forEach(n=>{delete s.lec[n]});else if(k.type==='review'&&k.prev)k.lects.forEach(n=>{const l=s.lec[n],p=k.prev[n];if(l&&p){l.r=p.r;if(p.last===undefined)delete l.last;else l.last=p.last}})}k.done=false;delete k.prev;save();gen();render()}
+const fmt=a=>a.length>6?a[0]+' إلى '+a[a.length-1]+' ('+a.length+' محاضرة)':a.join('، ');
+
+function render(){
+  const t=today();
+  $('dt').textContent=new Date().toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long'});
+  $('tip').textContent=TIPS[dayIdx()%TIPS.length];
+  const box=$('tasks');
+  if(!S.subs.length){box.innerHTML='<p class="mu">ضيف مادة من تحت وهتظهرلك خطة النهارده هنا.</p>'}
+  else if(!S.plan.tasks.length){box.innerHTML='<p class="mu">مفيش مهام النهارده. استريح، أو شوف لو في محاضرات جديدة نزلت.</p>'}
+  else box.innerHTML=S.plan.tasks.map((k,i)=>{
+    const s=S.subs.find(x=>x.id===k.sid);if(!s)return'';
+    let tag,txt;
+    if(k.type==='new'){tag='<span class="tag">جديد</span>';txt='ذاكر محاضرة '+fmt(k.lects)+' في '+esc(s.name)+'، ثم استرجع من غير كتاب، وحل أسئلة عليها.'}
+    else if(k.type==='review'){tag='<span class="tag rv">مراجعة</span>';txt='راجع محاضرات '+fmt(k.lects)+' في '+esc(s.name)+' (استرجاع) وحل أسئلة عليهم.'}
+    else{tag='<span class="tag fn">مراجعة نهائية</span>';txt='مراجعة سريعة على كل محاضرات '+esc(s.name)+' اللي ذاكرتها، وركز على الأسئلة.'}
+    return '<label class="task'+(k.done?' done':'')+'"><input type="checkbox" data-i="'+i+'"'+(k.done?' checked':'')+'><span>'+tag+txt+'</span></label>';
+  }).join('');
+  $('subs').innerHTML=S.subs.length?S.subs.map(s=>{
+    const n=Object.keys(s.lec).length,p=Math.round(n/s.total*100),left=dd(t,s.exam);
+    const wait=s.total-s.released;
+    const notYet=s.released-n;
+    const pace=left>0?Math.ceil((s.total-n)/Math.max(1,left>finOf(s)?left-finOf(s):left)):0;
+    return '<div style="padding:10px 0;border-top:1px solid var(--ln)"><div class="row" style="justify-content:space-between"><b>'+esc(s.name)+'</b><span class="mu">'+(left<0?'الامتحان عدّى':left===0?'الامتحان النهارده':'باقي '+left+' يوم')+'</span></div>'
+    +'<div class="bar"><i style="width:'+p+'%"></i></div>'
+    +'<div class="mu">ذاكرت '+n+' من '+s.total+' · نزل '+s.released+' · لسه نازل ومذاكرتوش '+notYet+(wait?' · لسه منزلتش '+wait:'')+' · مراجعة نهائية '+finOf(s)+' أيام · صعوبة '+DFN[s.df||'n']+'</div>'
+    +(left>0&&pace>3?'<div class="wa">الوقت ضيق: محتاج حوالي '+pace+' محاضرات في اليوم.</div>':'')
+    +'<div class="row" style="margin-top:6px"><button class="g s" data-a="up" data-id="'+s.id+'"'+(wait?'':' disabled')+'>+ نزلت محاضرة</button><button class="g s" data-a="dn" data-id="'+s.id+'"'+(s.released>n?'':' disabled')+'>− تراجع</button><button class="g s" data-a="edit" data-id="'+s.id+'">تعديل</button><button class="d s" data-a="del" data-id="'+s.id+'">حذف</button></div></div>';
+  }).join(''):'<p class="mu">لسه مفيش مواد.</p>';
+  renderFull();
+}
+
+const fd=d=>new Date(d+'T00:00').toLocaleDateString('ar-EG',{weekday:'short',day:'numeric',month:'short'});
+function simulate(s,assume){
+  const t=today(),left=dd(t,s.exam),lec={},out=[];
+  for(const n in s.lec)lec[n]={...s.lec[n]};
+  const FN=finOf(s),IVs=ivOf(s),toRel=s.total-s.released,relDays=Math.max(1,left-FN);
+  let rel=s.released;
+  for(let i=0;i<left;i++){
+    const day=addDays(t,i),lf=left-i;
+    if(assume&&toRel>0)rel=Math.min(s.total,s.released+Math.ceil(toRel*Math.min(i,relDays)/relDays));
+    const L=Object.keys(lec).map(Number).sort((a,b)=>a-b);
+    const dn=lf>FN?lf-FN:Math.max(1,lf);
+    const pace=Math.ceil((s.total-L.length)/dn);
+    const avail=[];for(let n=1;n<=rel;n++)if(!lec[n])avail.push(n);
+    const nw=avail.slice(0,Math.max(0,pace));
+    let rv=[],fin=false;
+    if(lf<=FN){fin=L.length>0}
+    else rv=L.filter(n=>{const l=lec[n];return l.r<IVs.length&&dd(l.last||l.d,day)>=IVs[l.r]}).sort((a,b)=>(lec[a].last||lec[a].d).localeCompare(lec[b].last||lec[b].d)).slice(0,capOf(s)).sort((a,b)=>a-b);
+    nw.forEach(n=>{lec[n]={d:day,r:0}});rv.forEach(n=>{lec[n].r++;lec[n].last=day});
+    out.push({day,nw,rv,fin,cnt:L.length+nw.length});
+  }
+  return out;
+}
+function renderFull(){
+  const t=today(),assume=$('asm').checked,el=$('full');
+  const subs=S.subs.filter(s=>dd(t,s.exam)>0).sort((a,b)=>a.exam.localeCompare(b.exam));
+  if(!subs.length){el.innerHTML='<p class="mu">ضيف مادة وهتشوف الخطة كاملة هنا.</p>';return}
+  const rows={};let sum='';
+  for(const s of subs){
+    const r=simulate(s,assume),left=dd(t,s.exam);
+    let fin=null,rvC=0,mx=0;
+    r.forEach((d,i)=>{rvC+=d.rv.length;mx=Math.max(mx,d.nw.length);if(fin===null&&d.cnt>=s.total)fin=i;
+      const p=[];if(d.nw.length)p.push('جديد '+fmt(d.nw));if(d.rv.length)p.push('مراجعة '+fmt(d.rv));if(d.fin)p.push('مراجعة نهائية لكل اللي ذاكرته');
+      if(p.length)(rows[d.day]=rows[d.day]||[]).push('<b>'+esc(s.name)+'</b>: '+p.join(' · '))});
+    (rows[s.exam]=rows[s.exam]||[]).push('<b>'+esc(s.name)+'</b>: 🎯 يوم الامتحان');
+    const have=Object.keys(s.lec).length;
+    const miss=s.total-(r.length?r[r.length-1].cnt:have);
+    let l1;
+    if(have>=s.total)l1='خلصت كل المحاضرات بالفعل، والباقي مراجعات.';
+    else if(fin!==null)l1='هتخلص أول مرور على كل المحاضرات '+(fin===0?'النهارده':'يوم '+fd(r[fin].day)+' (بعد '+fin+' يوم)')+'، بمعدل أقصى '+mx+' محاضرة جديدة في اليوم.';
+    else l1='فاضل '+miss+' محاضرة لسه منزلتش ومش محسوبة في الخطة. فعّل الافتراض اللي فوق أو حدّث الأعداد لما تنزل.';
+    sum+='<div style="padding:8px 0;border-top:1px solid var(--ln)"><b>'+esc(s.name)+'</b> <span class="mu">(باقي '+left+' يوم)</span><div>'+l1+'</div><div class="mu">مراجعة نهائية من '+fd(addDays(s.exam,-finOf(s)))+' · حوالي '+rvC+' مراجعة موزعة قبلها.</div></div>';
+  }
+  const ks=Object.keys(rows).sort();
+  const tb=ks.map(k=>'<tr><td style="padding:6px;border-top:1px solid var(--ln);white-space:nowrap;vertical-align:top">'+fd(k)+'</td><td style="padding:6px;border-top:1px solid var(--ln)">'+rows[k].join('<br>')+'</td></tr>').join('');
+  el.innerHTML=sum+'<details style="margin-top:8px"><summary style="cursor:pointer;color:var(--ac)">جدول يوم بيوم</summary><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">'+tb+'</table></div></details><p class="mu">ده تصور لو التزمت بكل يوم. أي تأخير والخطة بتتعدل تلقائيا.</p>';
+}
+$('asm').onchange=renderFull;
+document.addEventListener('change',e=>{if(e.target.dataset.i!==undefined)toggle(+e.target.dataset.i)});
+$('subs').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const s=S.subs.find(x=>x.id===b.dataset.id);if(!s)return;
+  if(b.dataset.a==='up'&&s.released<s.total)s.released++;
+  else if(b.dataset.a==='dn'&&s.released>Object.keys(s.lec).length)s.released--;
+  else if(b.dataset.a==='del'){S.subs=S.subs.filter(x=>x!==s)}
+  else if(b.dataset.a==='edit'){editId=s.id;$('n').value=s.name;$('e').value=s.exam;$('t').value=s.total;$('r').value=s.released;$('s').value=Object.keys(s.lec).length;$('df').value=s.df||'n';$('fn').value=finOf(s);$('ft').textContent='تعديل: '+s.name;$('sb').textContent='حفظ التعديل';$('cx').hidden=false;$('f').scrollIntoView({behavior:'smooth'});return}
+  save();gen();render();
+});
+$('regen').onclick=()=>{gen();render()};
+function resetForm(){editId=null;$('f').reset();$('s').value=0;$('df').value='n';$('fn').value=3;$('ft').textContent='ضيف مادة';$('sb').textContent='إضافة';$('cx').hidden=true;$('err').textContent=''}
+$('cx').onclick=resetForm;
+$('f').addEventListener('submit',e=>{
+  e.preventDefault();
+  const total=+$('t').value,rel=+$('r').value,st=+$('s').value,t=today();
+  if(rel>total){$('err').textContent='اللي نزل أكبر من العدد الكلي.';return}
+  if(st>rel){$('err').textContent='اللي ذاكرته أكبر من اللي نزل.';return}
+  if($('e').value<t){$('err').textContent='معاد الامتحان لازم يكون النهارده أو بعده.';return}
+  $('err').textContent='';
+  const ex=editId&&S.subs.find(x=>x.id===editId),lec=ex?ex.lec:{},have=Object.keys(lec).length;for(let n=have+1;n<=st;n++)lec[n]={d:addDays(t,-2),r:0};for(let n=have;n>st;n--)delete lec[n];const vals={name:$('n').value.trim(),exam:$('e').value,total,released:rel,df:$('df').value,fin:+$('fn').value||3};
+  if(ex)Object.assign(ex,vals);else S.subs.push({id:'s'+Date.now(),lec,...vals});
+  resetForm();save();gen();render();
+});
+if(!S.plan||S.plan.date!==today())gen();
+render();
+</script>
+</body>
+</html>
